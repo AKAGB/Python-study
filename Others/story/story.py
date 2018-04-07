@@ -50,8 +50,7 @@ class StoryCrawler:
             if i > 20:
                 break
             print('正在爬取第 ' + str(i+1) + ' 章...')
-            #Process(target=self.crawl, args=(i,)).start()
-            self.crawl(i)
+            Process(target=self.crawl, args=(i,)).start()
 
         print('下载完毕！')
 
