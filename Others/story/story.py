@@ -1,6 +1,8 @@
 import requests
 import os.path
+import time
 from bs4 import BeautifulSoup
+from multiprocessing import Process
 
 class StoryCrawler:
 
@@ -45,12 +47,19 @@ class StoryCrawler:
         if not os.path.exists('store/'):                    # 检测是否有store目录
             os.makedirs('store')
         for i in range(length):
-            if i > 20:                                      # 简单测试
+            if i > 20:
                 break
             print('正在爬取第 ' + str(i+1) + ' 章...')
-            html = self.get_HTML(self.links[i])
-            text = self.get_text(html)
-            self.write_file(text, self.titles[i])
+            #Process(target=self.crawl, args=(i,)).start()
+            self.crawl(i)
+
+        print('下载完毕！')
+
+    def crawl(self, x):
+        """爬取第x章内容"""
+        html = self.get_HTML(self.links[x])
+        text = self.get_text(html)
+        self.write_file(text, self.titles[x])
 
     def get_text(self, html):
         """获取正文"""
@@ -62,6 +71,7 @@ class StoryCrawler:
                 break
             text += tag.string
         return text.replace('\xa0\xa0\xa0\xa0', '\n  ')
+
 
 
 if __name__ == '__main__':
