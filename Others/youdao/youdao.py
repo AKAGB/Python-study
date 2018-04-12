@@ -31,6 +31,8 @@ class Translator():
         self.D = 'ebSeFb%=XZ%T[KZ)c(sy!'
 
     def translate(self, str_input):
+        if str_input.strip() == '':
+            return ''
         self.postData['i'] = str_input
 
         # 处理salt和sign

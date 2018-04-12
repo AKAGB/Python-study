@@ -1,0 +1,21 @@
+QPushButton {
+    background-color: #e02433;
+    width: 100px;
+    height: 30px;
+    color: white;
+    border: 0 outset black;
+    border-radius: 2px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+
+QPushButton:hover {
+    background-color: #bf0917;
+}
+
+QTextEdit {
+    max-height: 200px;
+    min-width: 300px;
+}
