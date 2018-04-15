@@ -1,0 +1,5 @@
+In Python you can write some scripts to help your work.
+In Python you can write web crawler to get some data on internet.
+In Python you can build a web server.
+In Python you can write some beautiful UI by PyQt5 or wxpython module.
+In Python you can analyse and visualize data by numpy and matplotlib module.
