@@ -9,4 +9,4 @@ class Solution:
         for i in S:
             if i.isalpha():
                 result.append([])
-s
+        

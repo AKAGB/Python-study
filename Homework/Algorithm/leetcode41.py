@@ -14,5 +14,5 @@ class Solution:
             x >>= 1
         return cnt
 
-sol = Solution()
-print(sol.firstMissingPositive([7, 8, 9, 11, 12]))
+# sol = Solution()
+# print(sol.firstMissingPositive([7, 8, 9, 11, 12]))
