@@ -17,13 +17,12 @@ class Solution:
             '9': '6',
         }
         result = 0
-        for i in range(1, N):
+        for i in range(1, N+1):
             s = str(i)
             t = ''.join(list(map(lambda x: alp[x], s)))
-            print(t)
             if 'x' not in t and s != t:
                 result += 1
         return result
 
-sol = Solution()
-sol.rotatedDigits(2)
+# sol = Solution()
+# print(sol.rotatedDigits(2))
