@@ -10,7 +10,10 @@ if __name__ == '__main__':
     vec = np.array(range(m))
     A = np.random.randn(n, m)
     B = toeplitz(vec)
-    b = np.random.randn(m)
-    x = np.linalg.solve(B, b)
-    print('Calcute Bx=b, and x =')
-    print(x)
+    print('||A||F =', np.linalg.norm(A))
+    print('||B||inf =', np.linalg.norm(B, np.inf))
+
+    # svd分解
+    U, S, V = np.linalg.svd(B)
+    print('The largest singular values of B =', S[0])
+    print('The smallest singular values of B =', S[len(S) - 1])
