@@ -71,16 +71,20 @@ def SOR(x, A, b, w, e):
             x[i] = (1 - w) * y[i] + w * x[i]
     return x, cnt
 
+def sigma(S, ts, ys):
+    """求均方误差"""
+    # return (sum(map(lambda i: (S(ts[i]) - ys[i])**2, range(len(ts)))) / len(ts))**0.5
+    return (sum(map(lambda i: (S(ts[i]) - ys[i])**2, range(len(ts)))) / len(ts))**0.5
+
 if __name__ == '__main__':
     A = np.array([
-        [5, 2, 1], 
-        [-1, 4, 2],
-        [2, -3, 10]
+        [15, 5327],
+        [5327, 7277699]
     ], np.float64)
 
-    x = np.zeros(3)
-    b = np.array([-12, 20, 3], np.float64)
-    e = 1e-2
+    x = np.zeros(2)
+    b = np.array([271.4, 369321.5], np.float64)
+    e = 1e-10
     w = 0.9
 
     result = g_s(x, A, b, e)
