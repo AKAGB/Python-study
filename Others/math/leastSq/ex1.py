@@ -10,7 +10,7 @@ def getA(t, fs):
 
 def leastSq(x, y, fs):
     """线性最小二乘，x为自变量列表，y为因变量列表，fs为基函数"""
-    A = getA(x, [fai1, fai2])
+    A = getA(x, fs)
     C = np.dot(A.transpose(), A)
     b = np.dot(A.transpose(), y)
     x = np.linalg.solve(C, b)
@@ -24,6 +24,14 @@ def epsi(y, y_):
     result /= len(y)
     return result**0.5
 
+def getS(coms, fs, x):
+    """返回拟合函数带入x的值"""
+    result = 0
+    l = len(coms)
+    for i in range(l):
+        result += coms[i] * fs[i](x)
+    return result
+
 if __name__ == '__main__':
     x = np.array([0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
     y = np.array([1, 1.75, 1.96, 2.19, 2.44, 2.71, 3.00])
@@ -31,11 +39,12 @@ if __name__ == '__main__':
     # 利用最小二乘法，拟合的多项式为 y = kx + b
     fai1 = lambda x : 1
     fai2 = lambda x : x
+    fs = [fai1, fai2]
     # coms = [k, b]
-    coms = leastSq(x, y, [fai1, fai2])
+    coms = leastSq(x, y, fs)
 
     # 拟合后的y
-    y_ = list(map(lambda x: coms[0] + coms[1] * x, x))
+    y_ = [getS(coms, fs, i) for i in x]
     print('e =', epsi(y, y_))
     plt.scatter(x, y, color='r')
     plt.plot(x, y_, color='b')
