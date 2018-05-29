@@ -7,10 +7,6 @@ from math import e
 from math import log
 from ex1 import *
 
-def p(y):
-    """返回y次函数"""
-    return lambda x : x**y
-
 def Lrd(y):
     """返回Py(x)"""
     coef = (0,) * y + (1,)
@@ -51,4 +47,5 @@ if __name__ == '__main__':
     plt.plot(ns, ls2, label='Pn(x)', color='b')
     plt.xlabel('n')
     plt.ylabel('ln(cond(A))')
+    plt.legend()
     plt.show()

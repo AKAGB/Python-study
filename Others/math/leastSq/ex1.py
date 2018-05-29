@@ -32,23 +32,31 @@ def getS(coms, fs, x):
         result += coms[i] * fs[i](x)
     return result
 
+def p(y):
+    """返回y次函数"""
+    return lambda x : x**y
+
 if __name__ == '__main__':
     x = np.array([0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
     y = np.array([1, 1.75, 1.96, 2.19, 2.44, 2.71, 3.00])
 
     # 利用最小二乘法，拟合的多项式为 y = kx + b
-    fai1 = lambda x : 1
-    fai2 = lambda x : x
-    fs = [fai1, fai2]
+    fs = [p(x) for x in range(3)]
     # coms = [k, b]
     coms = leastSq(x, y, fs)
+    print(coms)
 
     # 拟合后的y
     y_ = [getS(coms, fs, i) for i in x]
     print('e =', epsi(y, y_))
-    plt.scatter(x, y, color='r')
-    plt.plot(x, y_, color='b')
+
+    x_ = np.linspace(0, 1, 1000)
+    y_ = [getS(coms, fs, i) for i in x_]
+
+    plt.scatter(x, y, color='r', label='data point')
+    plt.plot(x_, y_, color='b', label='fitting curve')
     plt.xlabel('x')
     plt.ylabel('y')
+    plt.legend()
     plt.show()
     
